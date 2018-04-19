@@ -1,22 +1,25 @@
 @echo on
 
-appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
+appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/windows-x86/miktexsetup.zip
 
-7z x miktex-portable.exe -oC:\miktex >NUL
+7z x miktexsetup.zip
 
-mpm --verbose --install cm-super
-mpm --verbose --install amstex
+miktexsetup.exe --verbose --local-package-repository=C:\miktex-repository --package-set=basic download
+miktexsetup.exe --verbose --local-package-repository=C:\miktex-repository --package-set=basic --shared --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
 
-mpm --verbose --install beamer
-mpm --verbose --install pgf
-mpm --verbose --install xcolor
+mpm --admin --verbose --install cm-super
+mpm --admin --verbose --install amstex
 
-cp -f language.dat c:\miktex\texmfs\install\tex\generic\config\language.dat
-cp -f language.dat.lua c:\miktex\texmfs\install\tex\generic\config\language.dat.lua
+mpm --admin --verbose --install beamer
+mpm --admin --verbose --install pgf
+mpm --admin --verbose --install xcolor
 
-initexmf -u
-initexmf --dump
+cp -f language.dat c:\miktex\tex\generic\config\language.dat
+cp -f language.dat.lua c:\miktex\tex\generic\config\language.dat.lua
 
-initexmf --set-config-value "[MPM]AutoInstall=1"
+initexmf --admin -u
+initexmf --admin --dump
+
+initexmf --admin --set-config-value "[MPM]AutoInstall=1"
 
 @echo off

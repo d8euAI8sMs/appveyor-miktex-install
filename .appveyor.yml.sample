@@ -2,14 +2,14 @@
 
 #environment:
 #  pdftexify_cp1251:
-#    texify --pdf --src-specials --tex-option="--src -src-specials --tcx=CP1251 --shell-escape --enable-write18" --batch --tex-option=--interaction=nonstopmode --tex-option=--synctex=-1
+#    texify --pdf --tex-option="--tcx=CP1251" --tex-option="--enable-write18" --tex-option="--shell-escape" --tex-option="--interaction=nonstopmode" --batch
 
 cache:
   - c:\miktex -> .\miktex-install.bat
 
 install:
-  - set "PATH=%PATH%;c:\miktex\texmfs\install\miktex\bin"
-  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe .\miktex-install.bat
+  - set "PATH=%PATH%;c:\miktex\miktex\bin"
+  - if not exist c:\miktex\miktex\bin\pdflatex.exe .\miktex-install.bat
 
 #build_script:
 #  - '%pdftexify_cp1251% report.tex'
