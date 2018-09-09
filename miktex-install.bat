@@ -1,6 +1,6 @@
 @echo on
 
-appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/windows-x86/miktexsetup.zip
+appveyor DownloadFile https://github.com/d8euAI8sMs/miktex-binary/raw/master/miktexsetup.zip
 
 7z x miktexsetup.zip
 
