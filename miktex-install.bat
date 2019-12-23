@@ -1,6 +1,7 @@
 @echo on
 
-appveyor DownloadFile https://github.com/d8euAI8sMs/miktex-binary/raw/master/miktexsetup.zip
+git submodule update --init --recursive
+move miktex-binary\miktexsetup.zip .
 
 7z x miktexsetup.zip
 
@@ -13,12 +14,6 @@ mpm --admin --verbose --install amstex
 mpm --admin --verbose --install beamer
 mpm --admin --verbose --install pgf
 mpm --admin --verbose --install xcolor
-
-cp -f language.dat c:\miktex\tex\generic\config\language.dat
-cp -f language.dat.lua c:\miktex\tex\generic\config\language.dat.lua
-
-initexmf --admin -u
-initexmf --admin --dump
 
 initexmf --admin --set-config-value "[MPM]AutoInstall=1"
 
